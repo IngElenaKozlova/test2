@@ -6,8 +6,37 @@
     <title>Document</title>
 </head>
 <body>
-    
-    test 2 - done
+    <script>
+const createNewTime_HHMM = (time, duration, timeClear) => {
+    const sumDurAndTc = duration + timeClear;
 
+    let HH = Math.floor(sumDurAndTc / 60)
+    let MM = sumDurAndTc % 60
+    const editedTime = time.split(':');
+
+    const lastMM = +editedTime[1];
+    const lastHH = +editedTime[0]
+
+
+    let newMM = lastMM + MM;
+    let newHH = lastHH + HH
+
+    if (newMM >= 60) {
+        const tHH = Math.floor(newMM / 60); 
+
+        newMM = newMM % 60;
+        newHH += tHH;
+    }
+
+    if (newHH >= 24) newHH -= 24
+
+    if (newHH < 10) newHH = '0' + newHH;
+    if (newMM < 10) newMM = '0' + newMM;
+
+    return newHH + ':' + newMM
+}
+const r = createNewTime_HHMM('11:40', 20, 10);
+console.log(r)
+    </script>
 </body>
 </html>
